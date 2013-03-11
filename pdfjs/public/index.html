@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/mozilla/pdf.js/gh-pages/build/pdf.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        PDFJS.disableWorker = true;
+        var url = 'pdf/kayakfishing.pdf';
+        PDFJS.getDocument(url).then(function(pdf) {
+          for(var i = 1; i <= pdf.numPages; i++) {
+            var canvasId = 'page' + i;
+            var pageCanvas = $('#canvas-template').clone().show().attr('id', canvasId);
+            $('body').append(pageCanvas);
+            pdf.getPage(i).then(function(page) {
+              var viewport = page.getViewport(1.5);
+              var canvas = document.getElementById(canvasId);
+              var context = canvas.getContext('2d');
+              canvas.height = viewport.height;
+              canvas.width = viewport.width;
+              page.render({canvasContext: context, viewport: viewport});
+            });
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Option 4 - PDF.js</h1>
+    <ul>
+      <li>Renders multiple page document into HTML page with mixed HTML content
+      well.</li>
+      <li>Probably can render multiple pdfs into a single HTML page.</li>
+      <li>If the above is true, we would reduce storage costs considerably, as
+      we would not have to combine the documents at all.</li>
+      <li>Biggest drawback: <a
+      href="https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#wiki-faq-support">Not
+      very friendly to IE browsers</a></li>
+      <li>Can it handle every PDF document thrown at it?</li>
+    </ul>
+    <canvas id="canvas-template" style="display: none;"></canvas>
+  </body>
+  </html>

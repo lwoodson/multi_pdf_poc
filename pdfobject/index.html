@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      #pdfContainer {
+        height: 100%;
+        overflow: hidden;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/pdfobject_source.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        new PDFObject({
+          url: 'pdf/helloworld.pdf',
+          height: '100%'
+        }).embed("pdfContainer"); 
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Option 1 - PDFObject</h1>
+    <ul>
+      <li>Can mix PDF and HTML content in a rendered page</li>
+      <li><a href="http://pdfobject.com/#compatibility">Excellent browser support</a></li>
+      <li>Lightweight & minimal javascript</li>
+      <li>Cannot render multiple PDFs without possible issues.  Would need
+          to generate and store 1 PDF combining all associated S3 docs.</li>
+      <li>Issues with getting the div and reader within to expand to show full
+      PDF content</li>
+    </ul>
+    <div id="pdfContainer"></div>
+  </body>
+</html>

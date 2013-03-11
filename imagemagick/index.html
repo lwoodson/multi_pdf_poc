@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      #pdf_as_html {
+        width: 100%;
+        height: 800pt;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">
+    </script>
+  </head>
+  <body>
+    <h1>Option 3 - imagemagick</h1>
+    <p>Convert the PDF to JPG and render inline in a printer friendly view of
+    the auth-group specific application form.</p>
+    <ul>
+      <li>No new dependencies</li>
+      <li>Least issues with formatting</li>
+      <li>JPG file size is large (1.4 meg vs 262k).</li>
+      <li>JPG does not compress well (only to 1.1 meg).</li>
+      <li>Time to generate the JPG is slow (~ 30 secs)</li>
+      <li>Can probably tune settings for some time improvement</li>
+      <li>Fidelity will be affected</li>
+    </ul>
+    <img src="pdf/helloworld.jpg"/>
+  </body>
+</html>
