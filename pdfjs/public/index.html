@@ -7,12 +7,12 @@
     <script src="http://code.jquery.com/jquery.js"></script>
     <script type="text/javascript" src="https://raw.github.com/mozilla/pdf.js/gh-pages/build/pdf.js"></script>
     <script type="text/javascript">
-      $(function() {
-        PDFJS.disableWorker = true;
-        var url = 'pdf/kayakfishing.pdf';
+      var doc = 1;
+
+      function renderPdf(url) {
         PDFJS.getDocument(url).then(function(pdf) {
           for(var i = 1; i <= pdf.numPages; i++) {
-            var canvasId = 'page' + i;
+            var canvasId = 'doc' + (doc++) + '_page' + i;
             var pageCanvas = $('#canvas-template').clone().show().attr('id', canvasId);
             $('body').append(pageCanvas);
             pdf.getPage(i).then(function(page) {
@@ -25,6 +25,12 @@
             });
           }
         });
+      }
+
+      $(function() {
+        PDFJS.disableWorker = true;
+        renderPdf('pdf/kayakfishing.pdf');
+        renderPdf('pdf/citizensguide.pdf');
       });
     </script>
   </head>
